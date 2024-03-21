@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:56:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/21 10:52:12 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:04:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ typedef struct s_data
 	size_t		moves;
 }	t_data;
 
-void	check_map(char *map_file, t_map *map);
+void	init_map(char *mapfile, t_map *map);
+int		check_mapfile(char *mapfile);
+void	init_data(t_data *data, t_map *map);
 void	clean_map(t_map *map);
 void	clean_data(t_data *data);
 void	quit_file_error(char *error_message);
