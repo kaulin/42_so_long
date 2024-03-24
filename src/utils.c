@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 16:48:22 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/24 18:22:15 by jajuntti         ###   ########.fr       */
+/*   Created: 2024/03/24 18:33:14 by jajuntti          #+#    #+#             */
+/*   Updated: 2024/03/24 18:33:35 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	clean_str_array(char **array, int rows)
+void print_map(t_data *data)
 {
 	int	i;
 
-	if (!array)
-		return ;
 	i = 0;
-	while (i < rows)
-	{
-		free(array[i]);
-		array[i] = NULL;
-		i++;
-	}
-}
-
-void	clean_data(t_data *data)
-{
-	if (!data)
-		return ;
-	clean_str_array(data->map, data->rows);
-	//free(data);
+	while (i < data->rows)
+		ft_putendl_fd(data->map[i++], 1);
 }

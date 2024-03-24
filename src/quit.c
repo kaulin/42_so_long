@@ -6,28 +6,35 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:41:13 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/21 14:50:33 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:23:51 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	quit_file_error(char *error_message)
+void	quit_error(char *error_message)
+{
+	ft_putstr_fd("Error\n", 2);
+	ft_putendl_fd(error_message, 2);
+	exit(EXIT_FAILURE);
+}
+
+void	quit_perror(char *error_message)
 {
 	ft_putstr_fd("Error\n", 2);
 	perror(error_message);
 	exit(EXIT_FAILURE);
 }
 
-void	quit_map_error(t_map *map, char *error_message)
+void	quit_data_perror(t_data *data, char *error_message)
 {
 	ft_putstr_fd("Error\n", 2);
-	ft_putendl_fd(error_message, 2);
-	clean_map(map);
+	perror(error_message);
+	clean_data(data);
 	exit(EXIT_FAILURE);
 }
 
-void	quit_error(t_data *data, char *error_message)
+void	quit_data_error(t_data *data, char *error_message)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(error_message, 2);

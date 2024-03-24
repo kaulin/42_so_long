@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:56:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:04:27 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:33:40 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,49 @@
 # include "libft.h"
 # include "MLX42/MLX42.h"
 
-typedef struct s_map
+typedef struct s_point
 {
-	char	*map_str;
-	char	**map;
-	size_t	rows;
-	size_t	cols;
-	size_t	objs;
-	size_t	start_x;
-	size_t	start_y;
-	size_t	exit_x;
-	size_t	exit_y;
-	size_t	**visited;
-}	t_map;
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_data
 {
+	int			fd;
+	char		**map;
+	int			rows;
+	int			cols;
+	int			col_count;
+	t_point		*start_point;
+	t_point		*exit_point;
+	t_list		*col_points;;
 	mlx_t		*mlx;
-	t_map		*map;
 	mlx_image_t	*player;
 	mlx_image_t	*wall;
 	mlx_image_t	*obj;
 	mlx_image_t	*exit;
 	mlx_image_t	*background;
-	size_t		height;
-	size_t		width;
-	size_t		pos_x;
-	size_t		pos_y;
-	size_t		moves;
+	int			height;
+	int			width;
+	int			pos_x;
+	int			pos_y;
+	int			moves;
 }	t_data;
 
-void	init_map(char *mapfile, t_map *map);
 int		check_mapfile(char *mapfile);
-void	init_data(t_data *data, t_map *map);
-void	clean_map(t_map *map);
+void	check_cols(t_data *data);
+void	check_walls(t_data *data);
+void	check_chars(t_data *data);
+void	check_access(t_data *data);
+int		path_exists(t_data *data, char **map, t_point start, t_point dest);
+void	count_chars(t_data *data, int *p, int *e, int *c);
+void	init_data(char *mapfile, t_data *data);
 void	clean_data(t_data *data);
-void	quit_file_error(char *error_message);
-void	quit_map_error(t_map *map, char *error_message);
-void	quit_error(t_data *data, char *error_message);
+void	quit_error(char *error_message);
+void	quit_perror(char *error_message);
+void	quit_data_error(t_data *data, char *error_message);
+void	quit_data_perror(t_data *data, char *error_message);
 void	quit_success(t_data *data, char *message);
+void	print_map(t_data *data);
 
 #endif

@@ -6,19 +6,58 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:31:34 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:33:30 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(char *mapfile, t_map *map)
+static void fill_map(char *mapfile, t_data *data)
 {
-	map->rows = check_mapfile(mapfile);
-	ft_printf("The map file has %d rows.");
+	int	i;
+
+	i = 0;
+	data->fd = open(mapfile, O_RDONLY);
+	if (data->fd == -1)
+		quit_perror("Error reading map file");
+	data->map = ft_calloc(data->rows, sizeof(char *));
+	if (!data->map)
+	{
+		close(data->fd);
+		quit_perror("Memory allocation error");
+	}
+	while (i < data->rows)
+	{
+		data->map[i] = ft_get_next_line(data->fd);
+		if (!data->map[i]){
+			close(data->fd);
+			quit_data_perror(data, "Error reading file");
+		}
+		if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
+			data->map[i][ft_strlen(data->map[i]) - 1] = 0;
+		i++;
+	}
+	close(data->fd);
 }
 
-void	init_data(t_data *data, t_map *map)
+static void	init_map(char *mapfile, t_data *data)
 {
+	data->start_point = NULL;
+	data->exit_point = NULL;
+	data->col_points = NULL;
+	data->rows = check_mapfile(mapfile);
+	if (data->rows < 3)
+		quit_error("Invalid map: less than 3 rows");
+	fill_map(mapfile, data);
+	print_map(data);
+	check_cols(data);
+	check_walls(data);
+	check_chars(data);
+	check_access(data);
+}
+
+void	init_data(char *mapfile, t_data *data)
+{
+	init_map(mapfile, data);
 	return ;
 }

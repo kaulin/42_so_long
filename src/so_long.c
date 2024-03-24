@@ -6,25 +6,19 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 14:42:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/21 15:42:35 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:34:09 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void set_up(t_data *data, t_map *map)
-{
-	return ;
-}
-
 static void so_long(char *mapfile)
 {
-	t_map	map;
 	mlx_t	*mlx;
 	t_data	data;
 
-	init_map(mapfile, &map);
-	init_data(&data, &map);
+	init_data(mapfile, &data);
+	quit_success(&data, "WINNER WINNER!");
 	/*
 	mlx_init(1920, 1080, "Hello world!", true);
 	mlx_loop(mlx);

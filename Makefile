@@ -6,7 +6,7 @@
 #    By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 15:00:04 by jajuntti          #+#    #+#              #
-#    Updated: 2024/03/21 15:36:05 by jajuntti         ###   ########.fr        #
+#    Updated: 2024/03/24 18:33:56 by jajuntti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,11 @@ CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror
 SRC_DIR = src/
 SRC =	so_long.c \
 		init.c \
-		map_checks.c \
+		check.c \
+		check_utils.c \
 		clean.c \
-		quit.c
+		quit.c	\
+		utils.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ_DIR = obj/
