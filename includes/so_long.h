@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:56:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/24 18:33:40 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:54:43 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_data
 	int			rows;
 	int			cols;
 	int			col_count;
-	t_point		*start_point;
-	t_point		*exit_point;
-	t_list		*col_points;;
+	char		**visited;
+	t_point		start_point;
+	t_point		exit_point;
 	mlx_t		*mlx;
 	mlx_image_t	*player;
 	mlx_image_t	*wall;
@@ -47,12 +47,13 @@ typedef struct s_data
 	int			moves;
 }	t_data;
 
-int		check_mapfile(char *mapfile);
+
+int		check_mapfile(t_data *data, char *mapfile);
 void	check_cols(t_data *data);
 void	check_walls(t_data *data);
 void	check_chars(t_data *data);
 void	check_access(t_data *data);
-int		path_exists(t_data *data, char **map, t_point start, t_point dest);
+int		is_solvable(t_data *data, t_point point, int *v_col, int *v_exit);
 void	count_chars(t_data *data, int *p, int *e, int *c);
 void	init_data(char *mapfile, t_data *data);
 void	clean_data(t_data *data);
@@ -61,6 +62,7 @@ void	quit_perror(char *error_message);
 void	quit_data_error(t_data *data, char *error_message);
 void	quit_data_perror(t_data *data, char *error_message);
 void	quit_success(t_data *data, char *message);
+t_point set_point(int x, int y);
 void	print_map(t_data *data);
 
 #endif

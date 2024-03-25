@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/24 18:33:30 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:28:16 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,7 @@ static void fill_map(char *mapfile, t_data *data)
 
 static void	init_map(char *mapfile, t_data *data)
 {
-	data->start_point = NULL;
-	data->exit_point = NULL;
-	data->col_points = NULL;
-	data->rows = check_mapfile(mapfile);
-	if (data->rows < 3)
-		quit_error("Invalid map: less than 3 rows");
+	data->rows = check_mapfile(data, mapfile);
 	fill_map(mapfile, data);
 	print_map(data);
 	check_cols(data);

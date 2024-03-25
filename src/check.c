@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/24 18:36:54 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:14:19 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_cols(t_data *data)
 	i = 0;
 	data->cols = ft_strlen(data->map[i]);
 	if (data->cols < 3)
-		quit_data_error(data, "Invalid map: less than 3 columns");
+		quit_data_error(data, "Invalid map: less than three columns");
 	while (++i < data->rows)
 	{
 		if (ft_strlen(data->map[i]) != data->cols)
@@ -78,7 +78,7 @@ void	check_chars(t_data *data)
 	if (e > 1)
 		quit_data_error(data, "Invalid map: multiple map exits");
 	if (c < 1)
-		quit_data_error(data, "Invalid map: need at least 1 collectible");
+		quit_data_error(data, "Invalid map: need at least one collectible");
 	data->col_count = c;
 }
 
@@ -88,7 +88,30 @@ starting position.
 */
 void	check_access(t_data *data)
 {
-	return ;
+	int	v_col;
+	int	v_exit;
+	int	solved;
+	int	i;
+
+	v_col = 0;
+	v_exit = 0;
+	i = 0;
+	data->visited = calloc(data->rows, sizeof(char*));
+	if (!data->visited)
+		quit_data_perror(data, "Memory allocation error");
+	while (i < data->rows)
+	{
+		data->visited[i++] = calloc(data->cols, sizeof(char)); // TODO MALLOC CHECK
+	}
+	solved = is_solvable(data, data->start_point, &v_col, &v_exit);
+	free(data->visited);
+	if (!solved)
+	{
+		if (!v_exit)
+			quit_data_error(data, "Invalid map: no path to exit");
+		if (!v_col)
+			quit_data_error(data, "Invalid map: no path to all collectables");
+	}
 }
 
 /*
@@ -96,9 +119,8 @@ Checks mapfile extension, opens map file and reads through its rows, keeping
 track of how many there are. Quits with appropriate error messages, if 
 necessary, otherwise returns the number of rows.
 */
-int	check_mapfile(char *mapfile)
+int	check_mapfile(t_data *data, char *mapfile)
 {
-	int		fd;
 	int		len;
 	int		rows;
 	char	*line;
@@ -108,18 +130,20 @@ int	check_mapfile(char *mapfile)
 	if (mapfile[len -4] != '.' || mapfile[len -3] != 'b' \
 		|| mapfile[len -2] != 'e' || mapfile[len -1] != 'r')
 		quit_error("Map file missing \".ber\" extension");
-	fd = open(mapfile, O_RDONLY);
-	if (fd == -1)
+	data->fd = open(mapfile, O_RDONLY);
+	if (data->fd == -1)
 		quit_perror("Error reading map file");
-	line = ft_get_next_line(fd);
+	line = ft_get_next_line(data->fd);
 	while(line)
 	{
 		rows++;
 		free(line);
-		line = ft_get_next_line(fd);
+		line = ft_get_next_line(data->fd);
 	}
-	close(fd);
+	close(data->fd);
 	if (rows == 0)
 		quit_error("Map file is empty");
+	if (rows < 3)
+		quit_error("Invalid map: less than three rows");
 	return (rows);
 }
