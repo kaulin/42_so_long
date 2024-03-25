@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:56:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/25 16:54:43 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:38:16 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ void	quit_data_perror(t_data *data, char *error_message);
 void	quit_success(t_data *data, char *message);
 t_point set_point(int x, int y);
 void	print_map(t_data *data);
-
+void	print_floodfill(t_data *data);
 #endif

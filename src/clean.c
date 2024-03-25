@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:48:22 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/24 18:22:15 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:24:20 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	clean_str_array(char **array, int rows)
 		array[i] = NULL;
 		i++;
 	}
+	free(array);
+	array = NULL;
 }
 
 void	clean_data(t_data *data)
@@ -32,5 +34,5 @@ void	clean_data(t_data *data)
 	if (!data)
 		return ;
 	clean_str_array(data->map, data->rows);
-	//free(data);
+	clean_str_array(data->visited, data->rows);
 }

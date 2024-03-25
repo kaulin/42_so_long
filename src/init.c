@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/25 16:28:16 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:26:39 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ static void fill_map(char *mapfile, t_data *data)
 	close(data->fd);
 }
 
+static void	init_visited(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->visited = calloc(data->rows, sizeof(char*));
+	if (!data->visited)
+		quit_data_perror(data, "Memory allocation error");
+	while (i < data->rows)
+	{
+		data->visited[i] = calloc(data->cols, sizeof(char));
+		if (!data->visited[i])
+			quit_data_perror(data, "Memory allocation error");
+		i++;
+	}
+}
+
 static void	init_map(char *mapfile, t_data *data)
 {
 	data->rows = check_mapfile(data, mapfile);
@@ -48,6 +65,7 @@ static void	init_map(char *mapfile, t_data *data)
 	check_cols(data);
 	check_walls(data);
 	check_chars(data);
+	init_visited(data);
 	check_access(data);
 }
 

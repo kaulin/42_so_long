@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/25 17:14:19 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:37:30 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,8 @@ void	check_access(t_data *data)
 	v_col = 0;
 	v_exit = 0;
 	i = 0;
-	data->visited = calloc(data->rows, sizeof(char*));
-	if (!data->visited)
-		quit_data_perror(data, "Memory allocation error");
-	while (i < data->rows)
-	{
-		data->visited[i++] = calloc(data->cols, sizeof(char)); // TODO MALLOC CHECK
-	}
 	solved = is_solvable(data, data->start_point, &v_col, &v_exit);
-	free(data->visited);
+	print_floodfill(data);
 	if (!solved)
 	{
 		if (!v_exit)
