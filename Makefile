@@ -6,7 +6,7 @@
 #    By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 15:00:04 by jajuntti          #+#    #+#              #
-#    Updated: 2024/03/25 16:41:27 by jajuntti         ###   ########.fr        #
+#    Updated: 2024/04/09 09:51:50 by jajuntti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC =	so_long.c \
 		check.c \
 		check_utils.c \
 		clean.c \
+		hooks.c \
 		quit.c	\
 		utils.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC))

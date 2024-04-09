@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/03/25 17:37:30 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:48:27 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,36 +79,35 @@ void	check_chars(t_data *data)
 		quit_data_error(data, "Invalid map: multiple map exits");
 	if (c < 1)
 		quit_data_error(data, "Invalid map: need at least one collectible");
-	data->col_count = c;
+	data->tokens = c;
 }
 
 /*
-Checks that the player can reach all the objects and the exit from their 
-starting position.
+Checks that the player can reach all the objects (visited tokens) and the exit 
+(visited exit) from their starting position.
 */
 void	check_access(t_data *data)
 {
-	int	v_col;
+	int	v_tokens;
 	int	v_exit;
 	int	solved;
 	int	i;
 
-	v_col = 0;
+	v_tokens = 0;
 	v_exit = 0;
 	i = 0;
-	solved = is_solvable(data, data->start_point, &v_col, &v_exit);
-	print_floodfill(data);
+	solved = is_solvable(data, data->start_point, &v_tokens, &v_exit);
 	if (!solved)
 	{
 		if (!v_exit)
 			quit_data_error(data, "Invalid map: no path to exit");
-		if (!v_col)
+		if (v_tokens != data->tokens)
 			quit_data_error(data, "Invalid map: no path to all collectables");
 	}
 }
 
 /*
-Checks mapfile extension, opens map file and reads through its rows, keeping 
+Checks mapfile extension, opens map file and reads through its rows, keeping s
 track of how many there are. Quits with appropriate error messages, if 
 necessary, otherwise returns the number of rows.
 */
@@ -123,9 +122,11 @@ int	check_mapfile(t_data *data, char *mapfile)
 	if (mapfile[len -4] != '.' || mapfile[len -3] != 'b' \
 		|| mapfile[len -2] != 'e' || mapfile[len -1] != 'r')
 		quit_error("Map file missing \".ber\" extension");
-	data->fd = open(mapfile, O_RDONLY);
+	if (is_directory(mapfile))
+		quit_error("Map file is a directory");
+	data->fd = open(mapfile, O_RDONLY); // Read permissions, directory check?
 	if (data->fd == -1)
-		quit_perror("Error reading map file");
+		quit_perror("Unable to open map file");
 	line = ft_get_next_line(data->fd);
 	while(line)
 	{
@@ -134,8 +135,6 @@ int	check_mapfile(t_data *data, char *mapfile)
 		line = ft_get_next_line(data->fd);
 	}
 	close(data->fd);
-	if (rows == 0)
-		quit_error("Map file is empty");
 	if (rows < 3)
 		quit_error("Invalid map: less than three rows");
 	return (rows);
