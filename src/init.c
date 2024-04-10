@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 13:18:59 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:54:15 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,7 @@ static void	init_map(char *mapfile, t_data *data)
 }
 
 static	void	init_mlx(t_data *data)
-{	
-	int	screen_width;
-	int	screen_height;
-
+{
 	data->tile_size = 21;
 	data->height = data->rows * data->tile_size;
 	data->width = data->cols * data->tile_size;
