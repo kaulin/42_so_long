@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 17:56:56 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:54:35 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static	void	init_mlx(t_data *data)
 
 void	init_data(char *mapfile, t_data *data)
 {
+	data->mlx = NULL;
 	init_map(mapfile, data);
 	init_mlx(data);
 	data->x = data->start_point.x;

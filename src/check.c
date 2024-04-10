@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 17:51:02 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:50:44 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_cols(t_data *data)
 		quit_data_error(data, "Invalid map: less than three columns");
 	while (++i < data->rows)
 	{
-		if (ft_strlen(data->map[i]) != data->cols)
+		if ((int)ft_strlen(data->map[i]) != data->cols)
 			quit_data_error(data, "Invalid map: uneven row lengths");
 	}
 }
