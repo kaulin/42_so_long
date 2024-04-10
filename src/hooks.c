@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 09:51:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 13:21:36 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:51:53 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	escape_hook(void *param)
 
 void	quit_hook(void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = param;
 	quit_success(data, "Closing the window is not a victory!");
 }
 
-void	move_keyhook(mlx_key_data_t keydata, void* param)
+void	move_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 	int		x;

@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:33:14 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/09 15:09:36 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:58:34 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_map(t_data *data)
 void	print_floodfill(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;

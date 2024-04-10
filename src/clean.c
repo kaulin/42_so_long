@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:48:22 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 13:19:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:51:20 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	clean_str_array(char **array, int rows)
 
 void	clean_mlx(t_data *data)
 {
-	
 	if (!data->mlx)
 		return ;
 	mlx_delete_image(data->mlx, data->img_player);

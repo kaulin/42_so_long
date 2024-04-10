@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 13:54:15 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:56:56 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	fill_map(char *mapfile, t_data *data)
 	while (i < data->rows)
 	{
 		data->map[i] = ft_get_next_line(data->fd);
-		if (!data->map[i]){
+		if (!data->map[i])
+		{
 			close(data->fd);
 			quit_data_perror(data, "Error reading file");
 		}
@@ -45,7 +46,7 @@ static void	init_visited(t_data *data)
 	int	i;
 
 	i = 0;
-	data->visited = calloc(data->rows, sizeof(char*));
+	data->visited = calloc(data->rows, sizeof(char *));
 	if (!data->visited)
 		quit_data_perror(data, "Memory allocation error");
 	while (i < data->rows)

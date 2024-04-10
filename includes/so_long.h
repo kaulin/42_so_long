@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:56:21 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 12:58:34 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:06:13 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,44 @@ typedef struct s_data
 	int			moves;
 }	t_data;
 
-mlx_image_t	*convert_png(t_data *data, char *file);
+// check.c
 int			check_mapfile(t_data *data, char *mapfile);
 void		check_cols(t_data *data);
 void		check_walls(t_data *data);
 void		check_chars(t_data *data);
 void		check_access(t_data *data);
-int			is_directory(char *filepath);
+
+// check_utils.c
 int			is_solvable(t_data *data, t_point point, int *v_col, int *v_exit);
+int			is_directory(char *filepath);
 void		count_chars(t_data *data, int *p, int *e, int *c);
-void		init_data(char *mapfile, t_data *data);
-void		escape_hook(void *param);
-void		quit_hook(void *param);
-void		move_to(t_data *data, int x, int y);
-void		move_keyhook(mlx_key_data_t keydata, void* param);
+
+// clean.c
 void		clean_mlx(t_data *data);
 void		clean_data(t_data *data);
+
+// hooks.c
+void		move_keyhook(mlx_key_data_t keydata, void *param);
+void		escape_hook(void *param);
+void		quit_hook(void *param);
+
+// init.c
+void		init_data(char *mapfile, t_data *data);
+
+// so_long.c
+void		move_to(t_data *data, int x, int y);
+
+// utils.c
+mlx_image_t	*convert_png(t_data *data, char *file);
+t_point		set_point(int x, int y);
+void		print_map(t_data *data);
+void		print_floodfill(t_data *data);
+
+// quit.c
 void		quit_error(char *error_message);
 void		quit_perror(char *error_message);
 void		quit_data_error(t_data *data, char *error_message);
 void		quit_data_perror(t_data *data, char *error_message);
 void		quit_success(t_data *data, char *message);
-t_point 	set_point(int x, int y);
-void		print_map(t_data *data);
-void		print_floodfill(t_data *data);
+
 #endif

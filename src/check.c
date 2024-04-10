@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:27 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:51:02 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,11 @@ int	check_mapfile(t_data *data, char *mapfile)
 		quit_error("Map file missing \".ber\" extension");
 	if (is_directory(mapfile))
 		quit_error("Map file is a directory");
-	data->fd = open(mapfile, O_RDONLY); // Read permissions, directory check?
+	data->fd = open(mapfile, O_RDONLY);
 	if (data->fd == -1)
 		quit_perror("Unable to open map file");
 	line = ft_get_next_line(data->fd);
-	while(line)
+	while (line)
 	{
 		rows++;
 		free(line);
