@@ -6,13 +6,13 @@
 #    By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 15:00:04 by jajuntti          #+#    #+#              #
-#    Updated: 2024/04/09 09:51:50 by jajuntti         ###   ########.fr        #
+#    Updated: 2024/04/10 13:53:45 by jajuntti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 CC = cc
-CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 SRC_DIR = src/
 SRC =	so_long.c \
