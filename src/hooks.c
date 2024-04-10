@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 09:51:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/09 15:14:55 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:12:57 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	escape_hook(void *param)
 	data = param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		quit_success(data, "Escape is not a victory!");
+	if (mlx_is_key_down(data->mlx, MLX_KEY_Q))
+		quit_success(data, "Quitting is not a victory!");
 }
 
 void	quit_hook(void *param)

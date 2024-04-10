@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/09 15:10:20 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:18:59 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,21 @@ static void	init_map(char *mapfile, t_data *data)
 
 static	void	init_mlx(t_data *data)
 {	
-	data->tile_size = 50;
+	int	screen_width;
+	int	screen_height;
+
+	data->tile_size = 21;
 	data->height = data->rows * data->tile_size;
 	data->width = data->cols * data->tile_size;
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	data->mlx = mlx_init(data->width, data->height, "VOID", true);
+	data->mlx = mlx_init(data->width, data->height, "NOT QUITE VOID", true);
 	if (!data->mlx)
 		quit_data_perror(data, "MLX42 failed");
-
-/*
-	data->img_player = convert_png(data, "assets/p.png");
-	data->img_wall = convert_png(data, "assets/1.png");
-	data->img_token = convert_png(data, "assets/c.png");
-	data->img_exit = convert_png(data, "assets/e.png");
-	data->img_empty = convert_png(data, "assets/0.png");
-*/
-	data->img_player = convert_png(data, "assets/player.png");
-	data->img_wall = convert_png(data, "assets/black.png");
-	data->img_token = convert_png(data, "assets/token.png");
-	data->img_exit = convert_png(data, "assets/exit.png");
-	data->img_empty = convert_png(data, "assets/white.png");
+	data->img_player = convert_png(data, "assets/21player.png");
+	data->img_wall = convert_png(data, "assets/21black.png");
+	data->img_token = convert_png(data, "assets/21token.png");
+	data->img_exit = convert_png(data, "assets/21exit.png");
+	data->img_empty = convert_png(data, "assets/21white.png");
 }
 
 void	init_data(char *mapfile, t_data *data)

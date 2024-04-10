@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 14:42:09 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/09 15:07:00 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:07:13 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	move_to(t_data *data, int x, int y)
 	draw_tile(data, data->map[data->y][data->x], data->y, data->x);
 	data->x = x;
 	data->y = y;
-	draw_tile(data, 'P', y, x);
+	draw_tile(data, 'P', y, x);	
 	if (this == 'C')
 		data->tokens -= 1;
-	if (this == 'E' && !data->tokens)
+	else if (this == 'E' && !data->tokens)
 		quit_success(data, "This is a victory!");
 }
 
