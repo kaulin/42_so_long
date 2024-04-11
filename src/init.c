@@ -6,12 +6,16 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/11 09:44:11 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:16:17 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
+Opens the map file, callocs for the map array, and stores each row from the 
+file into the array using ft_get_next_line.
+*/
 static void	fill_map(char *mapfile, t_data *data)
 {
 	int	i;
@@ -41,6 +45,9 @@ static void	fill_map(char *mapfile, t_data *data)
 	close(data->fd);
 }
 
+/*
+Initializes the visited array for flood fill using calloc.
+*/
 static void	init_visited(t_data *data)
 {
 	int	i;
@@ -58,6 +65,9 @@ static void	init_visited(t_data *data)
 	}
 }
 
+/*
+Checks the mapfile, fills the map and performs checks to ensure map is valid.
+*/
 static void	init_map(char *mapfile, t_data *data)
 {
 	data->rows = check_mapfile(data, mapfile);
@@ -69,9 +79,12 @@ static void	init_map(char *mapfile, t_data *data)
 	check_access(data);
 	if (data->cols * data->rows > 16000)
 		quit_data_error(data, "The map is valid, but I am saving the poor old \
-Intel Core i5 running this thing from crunching over 16000 tiles...");
+Intel Core i5 running this thing from crunching over 16000 tiles :)");
 }
 
+/*
+Initializes MLX and stores the required images.
+*/
 static	void	init_mlx(t_data *data)
 {
 	data->tile_size = 21;
@@ -88,9 +101,20 @@ static	void	init_mlx(t_data *data)
 	data->img_empty = convert_png(data, "assets/21white.png");
 }
 
+/*
+Initializes the data struct and in the end sets the current player location to 
+the starting location.
+*/
 void	init_data(char *mapfile, t_data *data)
 {
+	data->map = NULL;
+	data->visited = NULL;
 	data->mlx = NULL;
+	data->img_player = NULL;
+	data->img_wall = NULL;
+	data->img_token = NULL;
+	data->img_exit = NULL;
+	data->img_empty = NULL;
 	init_map(mapfile, data);
 	init_mlx(data);
 	data->x = data->start_point.x;

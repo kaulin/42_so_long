@@ -6,12 +6,16 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 18:33:14 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 17:58:34 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:31:14 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
+Converts a .png file into a texture and then converts that texture into an 
+MLX image.
+*/
 mlx_image_t	*convert_png(t_data *data, char *file)
 {
 	mlx_texture_t	*texture;
@@ -27,6 +31,9 @@ mlx_image_t	*convert_png(t_data *data, char *file)
 	return (img);
 }
 
+/*
+Initializes a new point struct with given x and y coordinates.
+*/
 t_point	set_point(int x, int y)
 {
 	t_point	point;
@@ -36,6 +43,9 @@ t_point	set_point(int x, int y)
 	return (point);
 }
 
+/*
+Prints the map array of given data struct into standard output.
+*/
 void	print_map(t_data *data)
 {
 	int	i;
@@ -46,6 +56,9 @@ void	print_map(t_data *data)
 	ft_putchar_fd('\n', 1);
 }
 
+/*
+Prints the visited  array of given data struct into standard output.
+*/
 void	print_floodfill(t_data *data)
 {
 	int	i;

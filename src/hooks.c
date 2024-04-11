@@ -6,12 +6,15 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 09:51:54 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 17:51:53 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/11 09:59:55 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
+Cleanly exits with a custom message if 'ESC' or 'Q' is pressed.
+*/
 void	escape_hook(void *param)
 {
 	t_data	*data;
@@ -23,6 +26,9 @@ void	escape_hook(void *param)
 		quit_success(data, "Quitting is not a victory!");
 }
 
+/*
+Cleanly exits with a custom message if window is closed.
+*/
 void	quit_hook(void *param)
 {
 	t_data	*data;
@@ -31,6 +37,10 @@ void	quit_hook(void *param)
 	quit_success(data, "Closing the window is not a victory!");
 }
 
+/*
+Detects single or repeated presses of movement keys WASD (and arrow keys). 
+Directs the appropriate landing coordinate to move_to function.
+*/
 void	move_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
