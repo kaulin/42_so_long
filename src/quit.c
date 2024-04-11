@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:41:13 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/11 10:21:14 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:48:15 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	quit_data_perror(t_data *data, char *error_message)
 	perror(error_message);
 	exit(EXIT_FAILURE);
 }
-
 
 /*
 Cleans all allocated memory and quits with provided message and EXIT_SUCCESS.

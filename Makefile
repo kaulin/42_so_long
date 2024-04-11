@@ -6,7 +6,7 @@
 #    By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 15:00:04 by jajuntti          #+#    #+#              #
-#    Updated: 2024/04/10 18:56:08 by jajuntti         ###   ########.fr        #
+#    Updated: 2024/04/11 10:43:14 by jajuntti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIB_DIR = libft/
 LIBFT = libft.a
 LIB_PATH = $(LIB_DIR)$(LIBFT)
 
-MLX42_DIR = mlx42/
+MLX42_DIR = MLX42/
 MLX42 = libmlx42.a
 MLX42_PATH = $(MLX42_DIR)build/$(MLX42)
 MLX42_LIB = $(MLX42_PATH) -L ~/.brew/opt/glfw/lib -lglfw -ldl -pthread -lm
