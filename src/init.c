@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:43:27 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 18:54:35 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/11 09:44:11 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ static void	init_map(char *mapfile, t_data *data)
 	check_chars(data);
 	init_visited(data);
 	check_access(data);
+	if (data->cols * data->rows > 16000)
+		quit_data_error(data, "The map is valid, but I am saving the poor old \
+Intel Core i5 running this thing from crunching over 16000 tiles...");
 }
 
 static	void	init_mlx(t_data *data)
