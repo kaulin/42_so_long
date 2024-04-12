@@ -6,7 +6,7 @@
 /*   By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:17:44 by jajuntti          #+#    #+#             */
-/*   Updated: 2024/04/10 18:50:44 by jajuntti         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:32:22 by jajuntti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,9 @@ void	check_access(t_data *data)
 	int	v_tokens;
 	int	v_exit;
 	int	solved;
-	int	i;
 
 	v_tokens = 0;
 	v_exit = 0;
-	i = 0;
 	solved = is_solvable(data, data->start_point, &v_tokens, &v_exit);
 	if (!solved)
 	{
