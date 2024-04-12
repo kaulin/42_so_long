@@ -6,7 +6,7 @@
 #    By: jajuntti <jajuntti@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 15:00:04 by jajuntti          #+#    #+#              #
-#    Updated: 2024/04/12 10:09:49 by jajuntti         ###   ########.fr        #
+#    Updated: 2024/04/12 16:31:03 by jajuntti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,11 +63,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf $(MLX42_DIR)build
-	make clean -C $(LIB_DIR)
+	make fclean -C $(LIB_DIR)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIB_PATH)
 
 re: fclean all
 
